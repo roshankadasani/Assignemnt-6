@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Bootstrap Core CSS -->
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/public/css/4-col-portfolio.css" rel="stylesheet">
+    <link href="/public/css/style.css" rel="stylesheet" type="text/css">
+    <title>Assignment-6</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div id="userFormArea" class="row text-center">
+            <div class="col-lg-12">
+                <h2 class="ui teal image header">
+                <div class="content">
+                    <h1>PLAY TRIVIA GAME</h1>
+                </div>
+            </h2>
+                <form id='userForm'>
+                    <div class="ui stacked segment">
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="text" id='username' placeholder="username">
+                            </div>
+                        </div>
+                        <p></p>
+                        <input type="submit" class="btn btn-primary btn-lg" id="" value="login" />
+                    </div>
+                    <div class="ui error message"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id='mainArea'>
+        <div class="row">
+            <div class="sidebar-nav">
+                <p>Online Users</p>
+                <div class='row'>
+                    <div class='col-md-10' id='userList'>
+                    </div>
+                </div>
+                <div id="scoreBtnId" name="score">
+                    <p>Current Score</p>
+                    <textarea id="rightAns" class="blank"></textarea>
+                    <textarea id="wrongAns" class="blank"></textarea>
+                </div>
+            </div>
+            <form id="game_form">
+                <div id="scoreDivBtnId">
+                    <div class="que">
+                      <center>
+                        <p>Add New Question</p>
+                        <div id="addQueDivId">
+                            <div>Add Question</div>
+                            <textarea id="questionId" style="height:50px; width:300px;"></textarea>
+                            <br>
+                            <div>Fix the Answer</div>
+                            <textarea id="answerId" style="height:50px; width:300px;"></textarea>
+                            <br>
+                            <input id="submit_Id" class="btn btn-default"  type="button" value="Submit">
+                            <br>
+                        </div>
+                      </center>
+                    </div>
+                    <div id="displayQueId">
+                      <center>
+                        <input class="form-control-static" type="hidden" id="askedQueId">
+                        <input class="form-control-static" type="hidden" id="askedQueAns">
+                        <input class="form-control-static" type="hidden" id="currentUserId">
+                        <p>&nbsp;</p>
+                        <p>Submit Answer</p>
+                        <div id="allQueId" class="btn">
+                            <div>A new question will be displayed below after submitting a new question answer pair</div>
+                            <textarea class="form-control-static" style="height:50px; width:300px; background: transparent; border: 0; outline: 0;" id="queId"></textarea>
+                            <br>
+                            <textarea style="height:50px; width:300px;" id="ansId" placeholder="Submit your answer here"></textarea>
+                            <br>
+                            <input type="button" class="btn btn-default" data-bind value="I am Sure" id="sendBtnId">
+                            <input type="button" class="btn btn-default" value="Next Round" id="next_round">
+                            <br>
+                        </div>
+                      </center>
+                  </div>
+            </form>
+            </div>
+            <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+            <script src="/public/javascripts/bootstrap.min.js"></script>
+            <script src="/public/javascripts/knockout-3.4.1.js"></script>
+            <script src="/socket.io/socket.io.js"></script>
+            <script src="/public/javascripts/app.js"></script>
+</body>
+</html>
