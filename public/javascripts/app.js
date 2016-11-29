@@ -33,6 +33,8 @@ var main = function() {
 
 $(document).ready(main);
 
+var view_model;
+
 $('#next_round').on('click', function() {
     other_level();
 });
@@ -121,13 +123,13 @@ jQuery(function($) {
         $('#wrongAns').val(data.wrong);
         console.log($('#currentUserId').val());
         if (data.flag == 1) {
-            if ($('#currentUserId').val() == $('#' + userName + '').text()) {
-                $('#' + userName + '').css("color", "#33D166");
+            if ($('#currentUserId').val() == $('#' + username + '').text()) {
+                $('#' + username + '').css("color", "#33D166");
             }
         }
         if (data.flag == 0) {
-            if ($('#currentUserId').val() == $('#' + userName + '').text()) {
-                $('#' + userName + '').css("color", "#F1492A");
+            if ($('#currentUserId').val() == $('#' + username + '').text()) {
+                $('#' + username + '').css("color", "#F1492A");
             }
         }
     });
@@ -143,3 +145,26 @@ jQuery(function($) {
     });
 
 });
+
+function VM() {
+    'use strict';
+    this.user_ans = ko.observable();
+
+    this.submit_ans = function () {
+        $('.user_ans').empty();
+        var user_Ans = document.getElementsByName('user_ans')[0].value;
+        var user_Ans_ID = view_model.spanId();
+        var jsonStr = JSON.stringify({
+            userAnswer: user_Ans,
+            userAnswerID: user_Ans_ID
+        });
+        submitAnswer(jsonStr);
+      };
+    };
+
+    this.nxt_round = function () {
+        other_level();
+    };
+
+view_model = new VM();
+ko.applyBindings(view_model);

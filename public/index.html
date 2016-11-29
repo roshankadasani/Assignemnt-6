@@ -90,10 +90,10 @@
                             <div>A new question will be displayed below after submitting a new question answer pair</div>
                             <textarea class="form-control-static" style="height:50px; width:300px; background: transparent; border: 0; outline: 0;" id="queId"></textarea>
                             <br>
-                            <textarea style="height:50px; width:300px;" id="ansId" placeholder="Submit your answer here"></textarea>
+                            <textarea style="height:50px; width:300px;" id="ansId" data-bind="value:user_ans" placeholder="Submit your answer here"></textarea>
                             <br>
-                            <input type="button" class="btn btn-default" data-bind value="I am Sure" id="sendBtnId">
-                            <input type="button" class="btn btn-default" value="Next Round" id="next_round">
+                              <input type="button" class="btn btn-default" data-bind="click:submit_ans" value="I am Sure" id="sendBtnId">
+                            <input type="button" class="btn btn-default" data-bind="click:nxt_round" value="Next Round" id="next_round">
                             <br>
                         </div>
                       </center>
