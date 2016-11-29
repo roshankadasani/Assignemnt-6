@@ -36,11 +36,11 @@
                         <div class="field">
                             <div class="ui left icon input">
                                 <i class="user icon"></i>
-                                <input type="text" id='username' placeholder="username">
+                                <input type="text" id="username" data-bind="value:new_user" placeholder="username">
                             </div>
                         </div>
                         <p></p>
-                        <input type="submit" class="btn btn-primary btn-lg" id="" value="login" />
+                        <input type="submit" class="btn btn-primary btn-lg" data-bind="click:newUserlogin" id="" value="login" />
                     </div>
                     <div class="ui error message"></div>
                 </form>
@@ -58,8 +58,8 @@
                 </div>
                 <div id="scoreBtnId" name="score">
                     <p>Current Score</p>
-                    <label>Right:</label><textarea id="rightAns" class="blank"></textarea>
-                    <label>Wrong:</label><textarea id="wrongAns" class="blank"></textarea>
+                    <label>Right:</label><textarea id="rightAns" class="blank" data-bind="text:right_Count"></textarea>
+                    <label>Wrong:</label><textarea id="wrongAns" class="blank" data-bind="text:wrong_Count"></textarea>
                 </div>
             </div>
             <form id="game_form">
@@ -92,7 +92,7 @@
                             <br>
                             <textarea style="height:50px; width:300px;" id="ansId" data-bind="value:user_ans" placeholder="Submit your answer here"></textarea>
                             <br>
-                              <input type="button" class="btn btn-default" data-bind="click:submit_ans" value="I am Sure" id="sendBtnId">
+                              <input type="button" class="btn btn-default" data-bind="click:submit_Ans" value="I am Sure" id="sendBtnId">
                             <input type="button" class="btn btn-default" data-bind="click:nxt_round" value="Next Round" id="next_round">
                             <br>
                         </div>

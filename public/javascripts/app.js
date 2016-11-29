@@ -13,10 +13,25 @@ var main = function() {
     socket.on('get users', function(data) {
         var html = '';
         for (var i = 0; i < data.length; i++) {
-            // html+='<li  class="bg-info" >'+ data[i] +'</li>';
             html += '<p class="btn-info btn-sm"> <span class="glyphicon glyphicon-user"></span>' + data[i] + '</p>';
         }
         $userList.html(html);
+    });
+
+    socket.on('score', function(data) {
+        $('#rightAns').val(data.right);
+        $('#wrongAns').val(data.wrong);
+        console.log($('#currentUserId').val());
+        if (data.flag == 1) {
+            if ($('#currentUserId').val() == $('#' + username + '').text()) {
+                $('#' + username + '').css("color", "#33D166");
+            }
+        }
+        if (data.flag == 0) {
+            if ($('#currentUserId').val() == $('#' + username + '').text()) {
+                $('#' + username + '').css("color", "#F1492A");
+            }
+        }
     });
 
     $userForm.submit(function(e) {
@@ -118,25 +133,17 @@ jQuery(function($) {
         $('#askedQueAns').val(question.answer);
     });
 
-    socket.on('score', function(data) {
-        $('#rightAns').val(data.right);
-        $('#wrongAns').val(data.wrong);
-        console.log($('#currentUserId').val());
-        if (data.flag == 1) {
-            if ($('#currentUserId').val() == $('#' + username + '').text()) {
-                $('#' + username + '').css("color", "#33D166");
-            }
-        }
-        if (data.flag == 0) {
-            if ($('#currentUserId').val() == $('#' + username + '').text()) {
-                $('#' + username + '').css("color", "#F1492A");
-            }
-        }
+
+    socket.on('getScore', function (data) {
+      'use strict';
+      console.log(data);
+      view_model.right_count(data.right);
+      view_model.wrong_count(data.wrong);
     });
 
     $('#sendBtnId').on('click', function() {
         console.log($('#ansId').val());
-        console.log("Question ::::: ", $('#askedQueId').val());
+        console.log("Question: ", $('#askedQueId').val());
         socket.emit('score', {
             questionId: $('#askedQueId').val(),
             givenAns: $('#ansId').val(),
@@ -149,17 +156,27 @@ jQuery(function($) {
 function VM() {
     'use strict';
     this.user_ans = ko.observable();
+    this.right_count = ko.observable();
+    this.wrong_count = ko.observable();
+    this.wrong_count = ko.observable();
+    this.new_user = ko.observable();
 
     this.submit_ans = function () {
         $('.user_ans').empty();
-        var user_Ans = document.getElementsByName('user_ans')[0].value;
-        var user_Ans_ID = view_model.spanId();
+        var user_ans = document.getElementsByName('user_ans')[0].value;
+        var user_ans_ID = view_model.spanId();
         var jsonStr = JSON.stringify({
-            userAnswer: user_Ans,
-            userAnswerID: user_Ans_ID
+            userAnswer: user_ans,
+            userAnswerID: user_ans_ID
         });
         submitAnswer(jsonStr);
       };
+    };
+
+    this.newUserlogin = function () {
+        this.new_user('');
+        $('.login_result').empty();
+        $('.login_modal').modal('show');
     };
 
     this.nxt_round = function () {
